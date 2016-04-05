@@ -1,0 +1,280 @@
+/*
+ * Reset
+ */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  &:before, &:after {
+    box-sizing: border-box;
+  }
+}
+
+/*
+ * Defaults
+ */
+html, body {
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-family-sans;
+  font-size: 20px;
+  line-height: 1.4;
+  color: $color-alpha;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-family: $font-family-serif;
+  font-size: 2.8rem;
+  margin-bottom: $gutter-m;
+  line-height: 1.2;
+}
+
+hr {
+  width: 33.33%;
+  height: 2px;
+  background-color: rgba(#000, 0.1);
+  margin: $gutter-l auto;
+}
+
+.gutter-m-bottom {
+  margin-bottom: $gutter-m;
+}
+
+/*
+ * Header
+ */
+.main-header {
+  position: relative;
+  background-image: url(../img/bg-header.jpg);
+  background-size: cover;
+  background-position: center;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-alpha, 0.6);
+    z-index: 0;
+  }
+  .header-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 740px;
+    padding: $gutter-l * 2 $gutter-s;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    * {
+      color: #fff;
+    }
+    p {
+      margin-bottom: $gutter-m;
+    }
+    a {
+      border-bottom: 1px solid #fff;
+      &:hover {
+        opacity: 0.6;
+      }
+      &.btn {
+        background-color: #fff;
+        border-radius: 3px;
+        padding: $gutter-s;
+        color: $color-alpha;
+      }
+    }
+  }
+}
+
+/*
+ * Navigation
+ */
+.main-nav {
+  background-color: $color-alpha;
+  width: 100%;
+  height: 60px;
+  color: #fff;
+  &[class*='sticky-'] {
+    box-shadow: 0 0 10px rgba(#000, 0.3);
+    position: fixed;
+    z-index: 999;
+  }
+  &.sticky-top {
+    top: 0;
+  }
+  &.sticky-bottom {
+    bottom: 0;
+  }
+  ul {
+    max-width: 940px;
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    padding: 0 $gutter-s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    li {
+      a {
+        text-transform: uppercase;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.sticky-spacer {
+  display: none;
+  width: 100%;
+  height: 60px;
+}
+
+/*
+ * Button Set
+ */
+.button-set {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+/*
+ * Content
+ */
+.wrapper {
+  .content {
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: $gutter-l $gutter-s;
+  }
+}
+
+/*
+ * Repos
+ */
+.repos {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .repo {
+    width: calc((100% - (#{$gutter-m} * 2)) / 3);
+    h2 {
+      a {
+        color: $color-beta;
+      }
+    }
+    .repo-meta {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      margin-bottom: $gutter-s;
+      a {
+        display: block;
+        color: $color-alpha;
+        &+a {
+          margin-left: $gutter-s;
+        }
+        span {
+          color: $color-gamma;
+        }
+      }
+    }
+    > p {
+      word-break: break-all;
+    }
+    .repo-contributors {
+      margin-top: $gutter-s;
+      display: flex;
+      justify-content: flex-start;
+      a {
+        display: block;
+        width: calc((100% - (#{$gutter-s} / 2 * 4)) / 5);
+        &+a {
+          margin-left: $gutter-s / 2;
+        }
+        img {
+          display: block;
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+    }
+    &:nth-of-type(n+5) {
+      margin-top: $gutter-m;
+    }
+    &:nth-of-type(3n+3) {
+      margin-left: $gutter-m;
+      margin-right: $gutter-m;
+    }
+  }
+}
+
+/*
+ * Loader
+ */
+.loading {
+  .loader {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto $gutter-s auto;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: 50px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: transparent;
+      animation-name: spin;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+    }
+    &:before {
+      width: 100%;
+      height: 100%;
+      border-top-color: rgba(#000, 0.6);
+      border-left-color: rgba(#000, 0.6);
+    }
+    &:after {
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      border-bottom-color: rgba(#000, 0.6);
+      border-right-color: rgba(#000, 0.6);
+      animation-direction: reverse;
+    }
+  }
+  p {
+    opacity: 0.6;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
