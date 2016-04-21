@@ -46,35 +46,70 @@ app =
 
 categories =
   'build-time':
-    0: 'aosp.changelog.to'
-    1: 'notils'
-    2: 'bintray-release'
-  'test-time':
-    0: 'gradle-android-command-plugin'
-    1: 'gradle-android-test-plugin'
-    2: 'gradle-android-jacoco-plugin'
+    0: 16004885 # sqlite-analyzer
+    1: 25312557 # bintray-release
+    2: 19490270 # gradle-android-command-plugin
   'run-time':
-    0: 'image-loader'
-    1: 'merlin'
-    2: 'download-manager'
-    3: 'cast-receiver'
-    4: 'ExoPlayer'
+    0: 11662606 # notils
+    1: 35211795 # download-manager
+    2: 35604965 # rxmocks
+    3: 35604995 # rxpresso
+    4: 46065249 # simple-chrome-custom-tabs
+    5: 10883852 # simple-easy-xml-parser
+    6: 9941578  # merlin
+    7: 1077753  # sqlite-provider
+    8: 35665177 # landing-strip
   'apps':
-    0: 'android-demos'
-    1: 'public-mvn-repo'
-    2: 'ci-game-plugin'
-    3: 'ios-demos'
-    4: 'aws-java-sample'
+    0: 47839983 # snowy-village-wallpaper
+    1: 44617096 # droidcon-booth
+    2: 31185420 # material-painter
   'scripting':
-    0: 'material-painter'
-    1: 'dojos'
-    2: 'droidcon-booth'
-    3: 'iosched-webapp'
-    4: 'novoda'
-    5: 'landing-strip'
-    6: 'github-oauth-plugin'
-    7: 'accessibilitools'
-    8: 'hubot-slack'
+    0: 32337114 # aosp.changelog.to
+    1: 26584518 # novoda
+    2: 13472524 # gradle-android-test-plugin
+  'do-not-list':
+    0: 6509909  # dojos
+    1: 13300550 # spikes
+    2: 260841   # android-demos
+
+### Repository IDs
+2161802  # image-loader
+35604995 # rxpresso
+1077753  # sqlite-provider
+25312557 # bintray-release
+9941578  # merlin
+31185420 # material-painter
+19490270 # gradle-android-command-plugin
+11662606 # notils
+13472524 # gradle-android-test-plugin
+35211795 # download-manager
+10677957 # robolectric-plugin
+16004885 # sqlite-analyzer
+46065249 # simple-chrome-custom-tabs
+35604965 # rxmocks
+10883852 # simple-easy-xml-parser
+47839983 # snowy-village-wallpaper
+44617096 # droidcon-booth
+17395619 # gradle-android-jacoco-plugin
+26584518 # novoda
+31650174 # iosched-webapp
+2168934  # public-mvn-repo
+32337114 # aosp.changelog.to
+24189087 # RxAndroid
+35665177 # landing-strip
+55979944 # view-pager-adapter
+28082079 # cast-receiver
+22604806 # ci-game-plugin
+27539225 # junit-plugin
+23464489 # pmd
+27084480 # github-oauth-plugin
+41148441 # hubot-slack
+52445441 # ExoPlayer
+52599862 # aws-java-sample
+53143469 # ios-demos
+54135763 # accessibilitools
+50032733 # novoda.github.io
+###
 
 
 github =
@@ -89,7 +124,7 @@ github =
     @get_repositories()
 
   get_repositories: ->
-    endpoint = @api_url + '/users/' + @username + '/repos'
+    endpoint = @api_url + '/orgs/' + @username + '/repos?type=public&per_page=100'
     @fetch endpoint, @list_repositories
 
   list_repositories: (repos) ->
@@ -97,12 +132,14 @@ github =
     github.repo_count = repos.length
     $.each repos, (key, val) ->
       cat = github.get_category val
-      if cat is ''
-        cat = 'default'
-      repo = '<div class="repo" data-rid="'+val.id+'"><h3>'+(val.language or "Script")+'</h3><h2><a href="'+val.html_url+'">'+val.name+'</a></h2><div class="repo-meta"><a href="'+val.stargazers_url+'"><span class="entypo-star"></span> '+val.stargazers_count+'</a><a href="'+val.forks_url+'"><span class="entypo-flow-branch"></span> '+val.forks+'</a></div><p>'+(val.description or "")+'</p><div class="repo-contributors"></div></div>'
-      $('.repos[data-category="'+cat+'"] .loading').hide()
-      $('.repos[data-category="'+cat+'"]').append repo
-      github.get_contributors val.name, val.id
+      unless cat is 'do-not-list'
+        if cat is ''
+          cat = 'default'
+        # console.log val
+        repo = '<div class="repo" data-rid="'+val.id+'"><h3>'+(val.language or "Script")+'</h3><h2><a href="'+val.html_url+'">'+val.name+'</a></h2><div class="repo-meta"><a href="https://github.com/'+github.username+'/'+val.name+'/stargazers"><span class="entypo-star"></span> '+val.stargazers_count+'</a><!--<a href="https://github.com/'+github.username+'/'+val.name+'/forks"><span class="entypo-flow-branch"></span> '+val.forks+'</a>--></div><p>'+(val.description or "You can find more information on GitHub.")+'</p><div class="repo-contributors"></div></div>'
+        $('.repos[data-category="'+cat+'"] .loading').hide()
+        $('.repos[data-category="'+cat+'"]').append repo
+        github.get_contributors val.name, val.id
 
   get_category: (repo) ->
     github.cat_temp = ''
@@ -110,7 +147,8 @@ github =
     $.each categories, (key, val) ->
       github.cat_key_temp = key
       $.each val, (i, d) ->
-        if d is repo.name
+        # Check if repo is in this category
+        if d is repo.id
           github.cat_temp = github.cat_key_temp
     github.cat_temp
 
@@ -119,14 +157,21 @@ github =
     @fetch endpoint, @list_contributors, repo_id
 
   list_contributors: (contributors, repo_id) ->
-    contributors = github.sort_object contributors, 'contributions'
-    github.contributor_count += contributors.length
-    repo = $('.repo[data-rid="'+repo_id+'"]')
-    i = 0
-    while i < 5
-      c = '<a href="'+contributors[i].html_url+'"><img src="'+contributors[i].avatar_url+'" alt="" title="'+contributors[i].login+'" /></a>'
-      $('.repo-contributors', repo).append c
-      i++
+    if contributors
+      contributors = github.sort_object contributors, 'contributions'
+      github.contributor_count += contributors.length
+      repo = $('.repo[data-rid="'+repo_id+'"]')
+      i = 0
+      while i < 5
+        if contributors[i]
+          c = '<a href="https://github.com/'+contributors[i].login+'"><img src="'+contributors[i].avatar_url+'" alt="" title="'+contributors[i].login+'" /></a>'
+          $('.repo-contributors', repo).append c
+        i++
+    github.display_stats()
+
+  display_stats: ->
+    $('.repo-count').html github.repo_count
+    $('.contributor-count').html github.contributor_count
 
   sort_object: (data, property) ->
     byProperty = (prop) ->
