@@ -32,6 +32,9 @@ a {
 
 img {
   max-width: 100%;
+  &.round {
+    border-radius: 50%;
+  }
 }
 
 h1 {
@@ -41,11 +44,67 @@ h1 {
   line-height: 1.2;
 }
 
+h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: $gutter-s / 2;
+  a {
+    color: $color-beta;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom-color: $color-beta;
+    }
+  }
+}
+
+h3 {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 300;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
 hr {
   width: 33.33%;
   height: 2px;
   background-color: rgba(#000, 0.1);
   margin: $gutter-l auto;
+}
+
+p {
+  &.stats {
+    font-size: 2rem;
+    font-family: $font-family-serif;
+    line-height: 1.2;
+    margin-bottom: $gutter-m;
+    font-weight: bold;
+    span {
+      color: $color-beta;
+    }
+    &+p {
+      font-size: 1rem;
+      a {
+        color: $color-alpha;
+        border-bottom: 1px solid $color-alpha;
+        &:hover {
+          color: $color-beta;
+          border-bottom-color: $color-beta;
+        }
+      }
+    }
+  }
+  &+p {
+    margin-top: $gutter-s;
+  }
+  &+h2 {
+    margin-top: $gutter-s;
+  }
+}
+
+.centered {
+  text-align: center;
 }
 
 .gutter-m-bottom {
@@ -60,6 +119,9 @@ hr {
   background-image: url(../img/bg-header.jpg);
   background-size: cover;
   background-position: center;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
   &:before {
     content: "";
     position: absolute;
@@ -94,6 +156,7 @@ hr {
         border-radius: 3px;
         padding: $gutter-s;
         color: $color-alpha;
+        display: block;
       }
     }
   }
@@ -132,6 +195,13 @@ hr {
       a {
         text-transform: uppercase;
         color: #fff;
+        display: block;
+        line-height: 60px;
+        padding: 0 $gutter-s;
+        &:hover {
+          background-color: #fff;
+          color: #000;
+        }
       }
     }
   }
@@ -157,6 +227,34 @@ hr {
  * Content
  */
 .wrapper {
+  &.blue {
+    background-color: $color-beta;
+    * {
+      color: #fff;
+    }
+    a {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+      &:hover {
+        color: $color-gamma;
+        border-bottom-color: $color-gamma;
+      }
+    }
+  }
+  &.grey {
+    background-color: #1a1a1a;
+    * {
+      color: #fff;
+    }
+    a {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+      &:hover {
+        color: $color-beta;
+        border-bottom-color: $color-beta;
+      }
+    }
+  }
   .content {
     width: 100%;
     max-width: 740px;
@@ -175,16 +273,11 @@ hr {
   flex-wrap: wrap;
   .repo {
     width: calc((100% - (#{$gutter-m} * 2)) / 3);
-    h2 {
-      a {
-        color: $color-beta;
-      }
-    }
     .repo-meta {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
-      margin-bottom: $gutter-s;
+      margin-bottom: $gutter-s / 2;
       a {
         display: block;
         color: $color-alpha;
@@ -197,7 +290,17 @@ hr {
       }
     }
     > p {
-      word-break: break-all;
+      // word-break: break-all;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-weight: 300;
+      color: rgba(#000, 0.9);
     }
     .repo-contributors {
       margin-top: $gutter-s;
@@ -217,7 +320,7 @@ hr {
       }
     }
     &:nth-of-type(n+5) {
-      margin-top: $gutter-m;
+      margin-top: $gutter-l;
     }
     &:nth-of-type(3n+3) {
       margin-left: $gutter-m;
@@ -230,6 +333,7 @@ hr {
  * Loader
  */
 .loading {
+  width: 100%;
   .loader {
     position: relative;
     width: 48px;

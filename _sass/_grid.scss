@@ -1,0 +1,36 @@
+$grid-gutter: 40px;
+$grid-columns: 12;
+.row {
+  width: 100%;
+  display: block;
+  [class*='span'] {
+    float: left;
+    &+[class*='span'] {
+      margin-left: $grid-gutter;
+    }
+  }
+  @for $i from 1 through $grid-columns {
+    .span#{$i} {
+      $d: floor($grid-columns / $i);
+      $gutter: ($grid-gutter * ($d - 1)) / $d;
+      width: calc((100% / #{$d}) - #{$gutter});
+      position: relative;
+      display: block;
+      &:nth-of-type(#{$d + 1}n + #{$d + 1}) {
+        margin-left: 0;
+      }
+      &:nth-of-type(n+#{$d + 1}) {
+        margin-top: $grid-gutter;
+      }
+      &.padding {
+        padding: $grid-gutter;
+      }
+    }
+  }
+  &:after {
+    @include clearfix();
+  }
+  &+.row {
+    margin-top: $gutter-l;
+  }
+}
