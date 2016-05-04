@@ -38,6 +38,7 @@ $color-gamma: #F9A326;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+  "icomoon",
   "grid",
   "application",
   "media-queries"

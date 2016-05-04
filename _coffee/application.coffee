@@ -21,6 +21,14 @@ app =
         scrollTop: offset + 'px'
       , 1000
 
+    # More Button
+    $(document).on 'click', '.btn-more', (e) ->
+      e.preventDefault()
+      offset = $('.main-header').height()
+      $('html,body').animate
+        scrollTop: offset + 'px'
+      , 1000
+
   sticky_nav_top: ->
     if $(window).width() > 705
       offset_top = $(".main-header").height()
@@ -136,7 +144,7 @@ github =
         if cat is ''
           cat = 'default'
         # console.log val
-        repo = '<div class="repo" data-rid="'+val.id+'"><h3>'+(val.language or "Script")+'</h3><h2><a href="'+val.html_url+'">'+val.name+'</a></h2><div class="repo-meta"><a href="https://github.com/'+github.username+'/'+val.name+'/stargazers"><span class="entypo-star"></span> '+val.stargazers_count+'</a><!--<a href="https://github.com/'+github.username+'/'+val.name+'/forks"><span class="entypo-flow-branch"></span> '+val.forks+'</a>--></div><p>'+(val.description or "You can find more information on GitHub.")+'</p><div class="repo-contributors"></div></div>'
+        repo = '<div class="repo" data-rid="'+val.id+'"><h3>'+(val.language or "Script")+'</h3><h2><a href="'+val.html_url+'">'+val.name+'</a></h2><p>'+(val.description or "You can find more information on GitHub.")+'</p><div class="repo-contributors"></div><div class="repo-meta"><a href="https://github.com/'+github.username+'/'+val.name+'/stargazers"><span class="entypo-star"></span> '+val.stargazers_count+'</a><!--<a href="https://github.com/'+github.username+'/'+val.name+'/forks"><span class="entypo-flow-branch"></span> '+val.forks+'</a>--></div></div>'
         $('.repos[data-category="'+cat+'"] .loading').hide()
         $('.repos[data-category="'+cat+'"]').append repo
         github.get_contributors val.name, val.id

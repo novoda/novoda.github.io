@@ -74,6 +74,8 @@ hr {
 }
 
 p {
+  font-weight: 300;
+  line-height: 1.7;
   &.stats {
     font-size: 2rem;
     font-family: $font-family-serif;
@@ -82,6 +84,14 @@ p {
     font-weight: bold;
     span {
       color: $color-beta;
+    }
+    a {
+      color: $color-beta;
+      border-bottom: 1px solid $color-beta;
+      &:hover {
+        color: $color-alpha;
+        border-bottom-color: $color-alpha;
+      }
     }
     &+p {
       font-size: 1rem;
@@ -114,6 +124,54 @@ p {
 /*
  * Header
  */
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  line-height: 64px;
+  padding: 0 $gutter-s;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  .logo {
+    padding: 0 $gutter-s;
+    height: 64px;
+    display: block;
+    svg {
+      display: block;
+      height: 30px;
+      margin-top: 17px;
+    }
+    &:hover {
+      background-color: rgba(#000, 0.1);
+    }
+  }
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      li {
+        font-size: 0.9rem;
+        a {
+          display: block;
+          padding: 0 $gutter-s;
+          font-weight: 400;
+          color: #fff;
+          &:hover {
+            background-color: rgba(#000, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
 .main-header {
   position: relative;
   background-image: url(../img/bg-header.jpg);
@@ -121,7 +179,7 @@ p {
   background-position: center;
   min-height: calc(100vh - 60px);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   &:before {
     content: "";
     position: absolute;
@@ -136,8 +194,8 @@ p {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 740px;
-    padding: $gutter-l * 2 $gutter-s;
+    max-width: 780px;
+    padding: $gutter-l $gutter-s;
     margin: 0 auto;
     font-size: 1.2rem;
     * {
@@ -160,16 +218,44 @@ p {
       }
     }
   }
+  .btn-more {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    color: #fff;
+    &:before {
+      position: absolute;
+      bottom: 40px;
+      animation-name: hint;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+@keyframes hint {
+  10% {
+    bottom: 20px;
+  }
+  100%, 20% {
+    bottom: 40px;
+  }
 }
 
 /*
  * Navigation
  */
 .main-nav {
-  background-color: $color-alpha;
+  background-color: #fff;
   width: 100%;
   height: 60px;
-  color: #fff;
+  color: $color-alpha;
   &[class*='sticky-'] {
     box-shadow: 0 0 10px rgba(#000, 0.3);
     position: fixed;
@@ -182,7 +268,7 @@ p {
     bottom: 0;
   }
   ul {
-    max-width: 940px;
+    max-width: 980px;
     width: 100%;
     height: 60px;
     margin: 0 auto;
@@ -194,13 +280,13 @@ p {
     li {
       a {
         text-transform: uppercase;
-        color: #fff;
+        color: $color-alpha;
         display: block;
         line-height: 60px;
         padding: 0 $gutter-s;
         &:hover {
-          background-color: #fff;
-          color: #000;
+          background-color: $color-beta;
+          color: #fff;
         }
       }
     }
@@ -257,9 +343,14 @@ p {
   }
   .content {
     width: 100%;
-    max-width: 740px;
+    max-width: 980px;
     margin: 0 auto;
     padding: $gutter-l $gutter-s;
+    >p, >h1 {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
@@ -277,7 +368,10 @@ p {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
-      margin-bottom: $gutter-s / 2;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      font-weight: 300;
+      opacity: 0.6;
       a {
         display: block;
         color: $color-alpha;
@@ -285,7 +379,7 @@ p {
           margin-left: $gutter-s;
         }
         span {
-          color: $color-gamma;
+          color: $color-alpha;
         }
       }
     }
@@ -301,11 +395,12 @@ p {
       line-height: 1.4;
       font-weight: 300;
       color: rgba(#000, 0.9);
+      margin-bottom: $gutter-s;
     }
     .repo-contributors {
-      margin-top: $gutter-s;
       display: flex;
       justify-content: flex-start;
+      margin-bottom: $gutter-s / 2;
       a {
         display: block;
         width: calc((100% - (#{$gutter-s} / 2 * 4)) / 5);
@@ -327,6 +422,13 @@ p {
       margin-right: $gutter-m;
     }
   }
+}
+
+.copyright {
+  opacity: 0.6;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: $gutter-m;
 }
 
 /*
