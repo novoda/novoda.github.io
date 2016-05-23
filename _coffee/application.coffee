@@ -57,6 +57,9 @@ categories =
     0: 16004885 # sqlite-analyzer
     1: 25312557 # bintray-release
     2: 19490270 # gradle-android-command-plugin
+    3: 10677957 # robolectric-plugin
+    4: 17395619 # gradle-android-jacoco-plugin
+    5: 53143469 # ios-demos
   'run-time':
     0: 11662606 # notils
     1: 35211795 # download-manager
@@ -67,18 +70,32 @@ categories =
     6: 9941578  # merlin
     7: 1077753  # sqlite-provider
     8: 35665177 # landing-strip
+    9: 2161802  # image-loader
+    10: 55979944 # view-pager-adapter
+    11: 54135763 # accessibilitools
   'apps':
     0: 47839983 # snowy-village-wallpaper
     1: 44617096 # droidcon-booth
     2: 31185420 # material-painter
+    3: 31650174 # iosched-webapp
+    4: 50032733 # novoda.github.io
   'scripting':
     0: 32337114 # aosp.changelog.to
     1: 26584518 # novoda
     2: 13472524 # gradle-android-test-plugin
+    3: 2168934  # public-mvn-repo
   'do-not-list':
     0: 6509909  # dojos
     1: 13300550 # spikes
     2: 260841   # android-demos
+    3: 24189087 # RxAndroid
+    4: 22604806 # ci-game-plugin
+    5: 27539225 # junit-plugin
+    6: 23464489 # pmd
+    7: 27084480 # github-oauth-plugin
+    8: 41148441 # hubot-slack
+    9: 52445441 # ExoPlayer
+    10: 52599862 # aws-java-sample
 
 ### Repository IDs
 2161802  # image-loader
@@ -123,6 +140,7 @@ categories =
 github =
   username: "novoda"
   api_url: "https://api.github.com"
+  at: "077be9086e2ef3479e91c8b7682dfb2fcd0d0112"
   cat_temp: ''
   cat_key_temp: ''
   repo_count: 0
@@ -132,7 +150,7 @@ github =
     @get_repositories()
 
   get_repositories: ->
-    endpoint = @api_url + '/orgs/' + @username + '/repos?type=public&per_page=100'
+    endpoint = @api_url + '/orgs/' + @username + '/repos?type=public&per_page=100&access_token=' + @at
     @fetch endpoint, @list_repositories
 
   list_repositories: (repos) ->
@@ -161,7 +179,7 @@ github =
     github.cat_temp
 
   get_contributors: (repo_name, repo_id) ->
-    endpoint = @api_url + '/repos/' + @username + '/' + repo_name + '/contributors'
+    endpoint = @api_url + '/repos/' + @username + '/' + repo_name + '/contributors?access_token=' + @at
     @fetch endpoint, @list_contributors, repo_id
 
   list_contributors: (contributors, repo_id) ->

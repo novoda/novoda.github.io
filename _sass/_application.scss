@@ -327,6 +327,20 @@ p {
       }
     }
   }
+  &.purple {
+    background-color: $color-delta;
+    * {
+      color: #fff;
+    }
+    a {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+      &:hover {
+        color: $color-gamma;
+        border-bottom-color: $color-gamma;
+      }
+    }
+  }
   &.grey {
     background-color: #1a1a1a;
     * {

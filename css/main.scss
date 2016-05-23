@@ -32,9 +32,10 @@ $gutter-l: 80px;
 $font-family-sans: 'Signika', sans-serif;
 $font-family-serif: 'Bitter', serif;
 
-$color-alpha: #00001E;
-$color-beta: #26A3DB;
-$color-gamma: #F9A326;
+$color-alpha: #00001E; // Black
+$color-beta: #26A3DB; // Blue
+$color-gamma: #F9A326; // Orange
+$color-delta: #321d4f; // Purple
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
