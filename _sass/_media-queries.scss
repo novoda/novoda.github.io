@@ -1,4 +1,9 @@
 @media screen and (max-width: 500px) {
+  .topbar {
+    nav {
+      display: none;
+    }
+  }
   .button-set {
     flex-direction: column;
     justify-content: center;
