@@ -15,7 +15,7 @@
   }
   .main-header {
     .header-content {
-      padding: $gutter-m $gutter-s;
+      padding: $gutter-m + 64px $gutter-s $gutter-m $gutter-s;
     }
   }
   .main-nav {
