@@ -62,8 +62,7 @@ categories =
     5: 53143469 # ios-demos
     6: 73317406 # gradle-build-properties-plugin
     7: 73275282 # gradle-static-analysis-plugin
-    8: 67407288 # gradle-xcodePlugin
-    9: 78538262 # eslint-config-novoda
+    8: 78538262 # eslint-config-novoda
   'run-time':
     0: 11662606 # notils
     1: 35211795 # download-manager
@@ -145,8 +144,6 @@ categories =
 65547837 # github-reports
 73317406 # gradle-build-properties-plugin
 73275282 # gradle-static-analysis-plugin
-67407288 # gradle-xcodePlugin
-
 ###
 
 
