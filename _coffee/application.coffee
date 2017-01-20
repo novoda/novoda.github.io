@@ -139,7 +139,6 @@ categories =
 53143469 # ios-demos
 54135763 # accessibilitools
 50032733 # novoda.github.io
-2168934  # public-mvn-repo
 61706237 # bonfire-firebase-sample
 73312159 # dashboards
 78538262 # eslint-config-novoda
