@@ -87,7 +87,6 @@ categories =
     0: 32337114 # aosp.changelog.to
     1: 26584518 # novoda
     2: 13472524 # gradle-android-test-plugin
-    3: 2168934  # public-mvn-repo
   'do-not-list':
     0: 6509909  # dojos
     1: 13300550 # spikes
@@ -100,6 +99,7 @@ categories =
     8: 41148441 # hubot-slack
     9: 52445441 # ExoPlayer
     10: 52599862 # aws-java-sample
+    11: 2168934  # public-mvn-repo
 
 ### Repository IDs
 2161802  # image-loader
