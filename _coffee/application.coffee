@@ -60,6 +60,9 @@ categories =
     3: 10677957 # robolectric-plugin
     4: 17395619 # gradle-android-jacoco-plugin
     5: 53143469 # ios-demos
+    6: 73317406 # gradle-build-properties-plugin
+    7: 73275282 # gradle-static-analysis-plugin
+    8: 78538262 # eslint-config-novoda
   'run-time':
     0: 11662606 # notils
     1: 35211795 # download-manager
@@ -79,11 +82,11 @@ categories =
     2: 31185420 # material-painter
     3: 31650174 # iosched-webapp
     4: 50032733 # novoda.github.io
+    5: 61706237 # bonfire-firebase-sample
   'scripting':
     0: 32337114 # aosp.changelog.to
     1: 26584518 # novoda
     2: 13472524 # gradle-android-test-plugin
-    3: 2168934  # public-mvn-repo
   'do-not-list':
     0: 6509909  # dojos
     1: 13300550 # spikes
@@ -96,6 +99,7 @@ categories =
     8: 41148441 # hubot-slack
     9: 52445441 # ExoPlayer
     10: 52599862 # aws-java-sample
+    11: 2168934  # public-mvn-repo
 
 ### Repository IDs
 2161802  # image-loader
@@ -134,6 +138,12 @@ categories =
 53143469 # ios-demos
 54135763 # accessibilitools
 50032733 # novoda.github.io
+61706237 # bonfire-firebase-sample
+73312159 # dashboards
+78538262 # eslint-config-novoda
+65547837 # github-reports
+73317406 # gradle-build-properties-plugin
+73275282 # gradle-static-analysis-plugin
 ###
 
 
