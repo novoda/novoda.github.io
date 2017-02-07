@@ -3,6 +3,16 @@ OS Landing Page http://novoda.github.io
 
 A beautiful and simple landing page template to show Github's open source projects.
 
+Instructions to deploy
+----------------------
+
+- Install gulp globally by `npm install -g gulp`
+- Install dependencies by `npm install`
+- Run `gulp`
+- When you have changes in `application.coffee` file, this will automatically create
+`js/application.min.js` with the latest changes.
+- Commit and push `js/application.min.js` to deploy the changes.
+
 License
 -------
 
